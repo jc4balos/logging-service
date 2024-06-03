@@ -8,6 +8,7 @@ class LoggingServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
