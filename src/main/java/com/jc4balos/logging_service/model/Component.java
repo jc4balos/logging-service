@@ -21,8 +21,8 @@ public class Component {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "component_id")
-    private Long logId;
+    private Long componentId;
 
-    @Column(nullable = false, name = "user_id")
-    private Long userId;
+    @Column(nullable = false, length = 100, name = "component_name")
+    private String componentName;
 }
