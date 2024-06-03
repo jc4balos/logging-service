@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Component {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = "table_id")
+    @Column(nullable = false, name = "component_id")
     private Long logId;
 
     @Column(nullable = false, name = "user_id")
