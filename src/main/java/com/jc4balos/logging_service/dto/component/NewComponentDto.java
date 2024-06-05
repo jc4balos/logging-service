@@ -5,6 +5,7 @@ import java.util.Objects;
 import jakarta.validation.constraints.NotNull;
 
 public class NewComponentDto {
+
     @NotNull(message = "Component Name is required.")
     public String componentName;
 

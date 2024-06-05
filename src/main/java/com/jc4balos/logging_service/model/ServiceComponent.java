@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "component")
-public class Component {
+public class ServiceComponent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "component_id")
@@ -20,10 +20,10 @@ public class Component {
     @Column(nullable = false, length = 100, name = "component_name")
     private String componentName;
 
-    public Component() {
+    public ServiceComponent() {
     }
 
-    public Component(Long componentId, String componentName) {
+    public ServiceComponent(Long componentId, String componentName) {
         this.componentId = componentId;
         this.componentName = componentName;
     }
@@ -44,12 +44,12 @@ public class Component {
         this.componentName = componentName;
     }
 
-    public Component componentId(Long componentId) {
+    public ServiceComponent componentId(Long componentId) {
         setComponentId(componentId);
         return this;
     }
 
-    public Component componentName(String componentName) {
+    public ServiceComponent componentName(String componentName) {
         setComponentName(componentName);
         return this;
     }
@@ -58,10 +58,10 @@ public class Component {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof Component)) {
+        if (!(o instanceof ServiceComponent)) {
             return false;
         }
-        Component component = (Component) o;
+        ServiceComponent component = (ServiceComponent) o;
         return Objects.equals(componentId, component.componentId)
                 && Objects.equals(componentName, component.componentName);
     }

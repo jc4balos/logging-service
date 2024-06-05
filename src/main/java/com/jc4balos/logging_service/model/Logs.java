@@ -22,9 +22,9 @@ public class Logs {
     @Column(nullable = false, name = "log_id")
     private Long logId;
 
-    @ManyToOne(targetEntity = Component.class)
+    @ManyToOne(targetEntity = ServiceComponent.class)
     @JoinColumn(nullable = false, name = "logs_component_id")
-    private Component component;
+    private ServiceComponent serviceComponent;
 
     @Column(nullable = false, name = "user_id")
     private Long userId;
@@ -39,9 +39,9 @@ public class Logs {
     public Logs() {
     }
 
-    public Logs(Long logId, Component component, Long userId, String event, LocalDateTime timeStamp) {
+    public Logs(Long logId, ServiceComponent serviceComponent, Long userId, String event, LocalDateTime timeStamp) {
         this.logId = logId;
-        this.component = component;
+        this.serviceComponent = serviceComponent;
         this.userId = userId;
         this.event = event;
         this.timeStamp = timeStamp;
@@ -55,12 +55,12 @@ public class Logs {
         this.logId = logId;
     }
 
-    public Component getComponent() {
-        return this.component;
+    public ServiceComponent getServiceComponent() {
+        return this.serviceComponent;
     }
 
-    public void setComponent(Component component) {
-        this.component = component;
+    public void setServiceComponent(ServiceComponent serviceComponent) {
+        this.serviceComponent = serviceComponent;
     }
 
     public Long getUserId() {
@@ -92,8 +92,8 @@ public class Logs {
         return this;
     }
 
-    public Logs component(Component component) {
-        setComponent(component);
+    public Logs serivceComponent(ServiceComponent serviceComponent) {
+        setServiceComponent(serviceComponent);
         return this;
     }
 
@@ -120,21 +120,21 @@ public class Logs {
             return false;
         }
         Logs logs = (Logs) o;
-        return Objects.equals(logId, logs.logId) && Objects.equals(component, logs.component)
+        return Objects.equals(logId, logs.logId) && Objects.equals(serviceComponent, logs.serviceComponent)
                 && Objects.equals(userId, logs.userId) && Objects.equals(event, logs.event)
                 && Objects.equals(timeStamp, logs.timeStamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(logId, component, userId, event, timeStamp);
+        return Objects.hash(logId, serviceComponent, userId, event, timeStamp);
     }
 
     @Override
     public String toString() {
         return "{" +
                 " logId='" + getLogId() + "'" +
-                ", component='" + getComponent() + "'" +
+                ", component='" + getServiceComponent() + "'" +
                 ", userId='" + getUserId() + "'" +
                 ", event='" + getEvent() + "'" +
                 ", timeStamp='" + getTimeStamp() + "'" +
