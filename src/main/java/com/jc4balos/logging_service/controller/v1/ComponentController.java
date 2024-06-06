@@ -14,17 +14,15 @@ import com.jc4balos.logging_service.exception.ApplicationExceptionHandler;
 import com.jc4balos.logging_service.service.component.v1.ComponentService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("api/v1/logs/component")
+@RequiredArgsConstructor
 public class ComponentController {
 
     @Autowired
     private ComponentService componentService;
-
-    public ComponentController(ComponentService componentService) {
-        this.componentService = componentService;
-    }
 
     @PostMapping("/add")
     public ResponseEntity<?> addComponent(@Valid @RequestBody NewComponentDto newComponent,

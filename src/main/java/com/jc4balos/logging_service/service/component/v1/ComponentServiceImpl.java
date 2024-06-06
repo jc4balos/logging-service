@@ -9,20 +9,16 @@ import com.jc4balos.logging_service.model.ServiceComponent;
 import com.jc4balos.logging_service.repository.ComponentRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ComponentServiceImpl implements ComponentService {
 
     private final ComponentRepository componentRepository;
 
     @Autowired
     private ComponentMapper componentMapper;
-
-    public ComponentServiceImpl(ComponentRepository componentRepository,
-            ComponentMapper componentMapper) {
-        this.componentRepository = componentRepository;
-        this.componentMapper = componentMapper;
-    }
 
     @Override
     @Transactional // Rollback when something wrong happens
