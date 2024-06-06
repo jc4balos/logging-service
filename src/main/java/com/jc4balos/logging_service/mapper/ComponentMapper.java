@@ -17,6 +17,7 @@ public class ComponentMapper {
 
     public ServiceComponent newComponent(NewComponentDto newComponentDto) {
         serviceComponent.setComponentName(newComponentDto.getComponentName());
+        serviceComponent.setActive(true);
         return serviceComponent;
     }
 }
