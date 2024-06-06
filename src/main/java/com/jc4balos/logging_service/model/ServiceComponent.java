@@ -23,7 +23,10 @@ public class ServiceComponent {
     @Column(nullable = false, name = "component_id")
     private Long componentId;
 
-    @Column(nullable = false, length = 100, name = "component_name")
+    @Column(nullable = false, unique = true, length = 100, name = "component_name")
     private String componentName;
+
+    @Column(nullable = false)
+    private boolean isActive;
 
 }
