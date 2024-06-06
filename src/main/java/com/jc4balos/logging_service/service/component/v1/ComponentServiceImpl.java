@@ -1,6 +1,7 @@
 package com.jc4balos.logging_service.service.component.v1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.jc4balos.logging_service.dto.component.NewComponentDto;
@@ -23,13 +24,18 @@ public class ComponentServiceImpl implements ComponentService {
     @Override
     @Transactional // Rollback when something wrong happens
     public String addComponent(NewComponentDto componentDto) {
+
         try {
             ServiceComponent componentToSave = componentMapper.newComponent(componentDto);
             componentRepository.save(componentToSave);
             return componentToSave.getComponentName().toString() + " component sucessfully added.";
 
         } catch (Exception e) {
-            throw new RuntimeException("An error occured when saving a new component");
+            if (e instanceof DataIntegrityViolationException) {
+                throw new RuntimeException("Component name already exists");
+            } else {
+                throw new RuntimeException("An error occured when saving a new component");
+            }
         }
 
     }
