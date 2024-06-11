@@ -1,6 +1,7 @@
 package com.jc4balos.logging_service.controller.v1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jc4balos.logging_service.dto.component.ModifyComponentDto;
 import com.jc4balos.logging_service.dto.component.NewComponentDto;
+import com.jc4balos.logging_service.exception.ApplicationExceptionHandler;
 import com.jc4balos.logging_service.service.component.v1.ComponentService;
-import com.jc4balos.logging_service.utils.ControllerService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +28,31 @@ public class ComponentController {
     @PostMapping("/add")
     public ResponseEntity<?> addComponent(@Valid @RequestBody NewComponentDto newComponent,
             BindingResult bindingResult) {
-        return ControllerService.execute(componentService.addComponent(newComponent), bindingResult);
+        try {
+            if (!bindingResult.hasErrors()) {
+                return new ResponseEntity<>(componentService.addComponent(newComponent),
+                        HttpStatus.OK);
+            } else {
+                return ApplicationExceptionHandler.handleBadRequest(bindingResult);
+            }
+        } catch (Exception e) {
+            return ApplicationExceptionHandler.handleCustomException(e);
+        }
+    }
+
+    @PostMapping("/modify")
+    public ResponseEntity<?> addComponent(@RequestBody ModifyComponentDto component,
+            BindingResult bindingResult) {
+        try {
+            if (!bindingResult.hasErrors()) {
+                return new ResponseEntity<>(componentService.modifyComponent(component),
+                        HttpStatus.OK);
+            } else {
+                return ApplicationExceptionHandler.handleBadRequest(bindingResult);
+            }
+        } catch (Exception e) {
+            return ApplicationExceptionHandler.handleCustomException(e);
+        }
     }
 
 }

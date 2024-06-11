@@ -7,6 +7,9 @@ import com.jc4balos.logging_service.model.ServiceComponent;
 
 @Configuration
 public class ModelConfig {
+    /*
+     * This class creates bean for all models.
+     */
 
     @Bean
     public ServiceComponent serviceComponent() {
