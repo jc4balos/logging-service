@@ -26,6 +26,6 @@ public class ComponentMapper {
             ModifyComponentDto modifyComponentDto) {
         component.setComponentName(modifyComponentDto.getComponentName());
         component.setActive(modifyComponentDto.isActive());
-        return serviceComponent;
+        return component;
     }
 }
