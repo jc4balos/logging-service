@@ -42,8 +42,9 @@ public class ComponentController {
     }
 
     @PatchMapping("/modify")
-    public ResponseEntity<?> addComponent(@RequestBody @Valid ModifyComponentDto component,
+    public ResponseEntity<?> addComponent(@Valid @RequestBody ModifyComponentDto component,
             BindingResult bindingResult) {
+        // TODO: Make id on request param then on request body are the changes
         try {
             if (!bindingResult.hasErrors()) {
                 return new ResponseEntity<>(componentService.modifyComponent(component),
