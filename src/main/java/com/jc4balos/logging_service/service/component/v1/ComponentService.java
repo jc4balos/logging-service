@@ -12,4 +12,6 @@ public interface ComponentService {
 
     String modifyComponent(ModifyComponentDto componentDto);
 
+    String deleteComponent(Long componentId);
+
 }

@@ -71,4 +71,28 @@ public class ComponentServiceImpl implements ComponentService {
             throw new RuntimeException(responseMessage);
         }
     }
+
+    @Override
+    @Transactional
+    public String deleteComponent(Long componentId) {
+        Optional<ServiceComponent> existingComponent = componentRepository.findById(componentId);
+        if (!existingComponent.isPresent()) {
+            String responseMessage = " Component not found.";
+            logger.error(responseMessage);
+            throw new RuntimeException(responseMessage);
+        }
+
+        try {
+            ServiceComponent componentToDelete = existingComponent.get();
+            componentToDelete.setActive(false);
+            String responseMessage = componentToDelete.getComponentName() + " deleted successfully.";
+            logger.info(responseMessage);
+            return responseMessage;
+        } catch (Exception e) {
+            String responseMessage = "An error while deleting a component: " + e;
+            logger.error(responseMessage);
+            throw new RuntimeException(responseMessage);
+
+        }
+    }
 }
