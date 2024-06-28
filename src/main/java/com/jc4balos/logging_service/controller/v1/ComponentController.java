@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jc4balos.logging_service.dto.component.ModifyComponentDto;
@@ -17,6 +18,12 @@ import com.jc4balos.logging_service.service.component.v1.ComponentService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+
+/*
+ * This Controller manipulates all the microservices components of an application.
+ * A component is a single microservice in the server.
+ */
 
 @RestController
 @RequestMapping("api/v1/logs/component")
@@ -57,4 +64,10 @@ public class ComponentController {
     }
 
     // TODO: Add delete component
+    @PatchMapping("/delete")
+    public ResponseEntity<?> deleteComponent(@RequestParam Long componentId){
+
+        
+        return null;
+    }
 }
