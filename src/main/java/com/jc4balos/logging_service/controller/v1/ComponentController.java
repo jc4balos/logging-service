@@ -19,7 +19,6 @@ import com.jc4balos.logging_service.service.component.v1.ComponentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-
 /*
  * This Controller manipulates all the microservices components of an application.
  * A component is a single microservice in the server.
@@ -63,11 +62,13 @@ public class ComponentController {
         }
     }
 
-    // TODO: Add delete component
     @PatchMapping("/delete")
-    public ResponseEntity<?> deleteComponent(@RequestParam Long componentId){
-
-        
-        return null;
+    public ResponseEntity<?> deleteComponent(@RequestParam Long componentId) {
+        try {
+            return new ResponseEntity<>(componentService.deleteComponent(componentId),
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            return ApplicationExceptionHandler.handleCustomException(e);
+        }
     }
 }

@@ -92,7 +92,6 @@ public class ComponentServiceImpl implements ComponentService {
             String responseMessage = "An error while deleting a component: " + e;
             logger.error(responseMessage);
             throw new RuntimeException(responseMessage);
-
         }
     }
 }
