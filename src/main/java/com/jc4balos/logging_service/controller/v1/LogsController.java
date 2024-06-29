@@ -1,5 +1,6 @@
 package com.jc4balos.logging_service.controller.v1;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -8,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jc4balos.logging_service.dto.logs.AddLogsDto;
+import com.jc4balos.logging_service.dto.logs.NewLogDto;
 import com.jc4balos.logging_service.exception.ApplicationExceptionHandler;
+import com.jc4balos.logging_service.service.logs.v1.LogsService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,11 +20,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LogsController {
 
-    @PostMapping("path")
-    public ResponseEntity<?> addLogs(@RequestBody AddLogsDto addLogsDto, BindingResult bindingResult) {
+    @Autowired
+    private LogsService logsService;
+
+    @PostMapping("/add")
+    public ResponseEntity<?> addLogs(@RequestBody NewLogDto newlogDto, BindingResult bindingResult) {
         try {
             if (!bindingResult.hasErrors()) {
-                return new ResponseEntity<>(componentService.modifyComponent(component),
+                return new ResponseEntity<>(logsService.newLog(newlogDto),
                         HttpStatus.OK);
             } else {
                 return ApplicationExceptionHandler.handleBadRequest(bindingResult);
