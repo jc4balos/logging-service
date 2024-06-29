@@ -12,7 +12,7 @@ import com.jc4balos.logging_service.dto.component.ModifyComponentDto;
 import com.jc4balos.logging_service.dto.component.NewComponentDto;
 import com.jc4balos.logging_service.mapper.ComponentMapper;
 import com.jc4balos.logging_service.model.ServiceComponent;
-import com.jc4balos.logging_service.repository.ComponentRepository;
+import com.jc4balos.logging_service.repository.ServiceComponentRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ComponentServiceImpl implements ComponentService {
 
-    private final ComponentRepository componentRepository;
+    private final ServiceComponentRepository componentRepository;
 
     private final Logger logger = LoggerFactory.getLogger(ComponentServiceImpl.class);
 
