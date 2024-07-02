@@ -9,8 +9,8 @@ public class NewLogDto {
     @NotEmpty(message = "Component is required.")
     private Long componentId;
 
-    @NotEmpty(message = "User is required.")
-    private Long userId;
+    @NotEmpty(message = "Username is required.")
+    private String userName;
 
     @NotEmpty(message = "Event message is required")
     private String eventMessage;

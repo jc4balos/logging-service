@@ -39,7 +39,7 @@ public class LogsMapper {
         }
         logs.setServiceComponent(logServiceComponent.get());
         logs.setEvent(newLogDto.getEventMessage());
-        logs.setUserId(newLogDto.getUserId());
+        logs.setUserName(newLogDto.getUserName());
         return logs;
     }
 

@@ -20,7 +20,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "logs", indexes = {
-        @Index(name = "logs_service_component_idx", columnList = "logs_component_id")
+        @Index(name = "logs_service_component_idx", columnList = "logs_component_id"),
+        @Index(name = "logs_username_idx", columnList = "username")
 })
 @Builder
 @AllArgsConstructor
@@ -36,8 +37,8 @@ public class Logs {
     @JoinColumn(nullable = false, name = "logs_component_id")
     private ServiceComponent serviceComponent;
 
-    @Column(nullable = false, name = "user_id")
-    private Long userId;
+    @Column(nullable = false, name = "username")
+    private String userName;
 
     @Column(nullable = false, length = 1000, name = "event")
     private String event;
