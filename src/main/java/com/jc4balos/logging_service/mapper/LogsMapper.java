@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jc4balos.logging_service.dto.logs.NewLogDto;
+import com.jc4balos.logging_service.dto.logs.ViewLogDto;
 import com.jc4balos.logging_service.model.Logs;
 import com.jc4balos.logging_service.model.ServiceComponent;
 import com.jc4balos.logging_service.repository.ServiceComponentRepository;
@@ -21,6 +22,9 @@ public class LogsMapper {
 
     @Autowired
     private Logs logs;
+
+    @Autowired
+    private ViewLogDto viewLogDto;
 
     @Autowired
     private ServiceComponent serviceComponent;
@@ -41,6 +45,13 @@ public class LogsMapper {
         logs.setEvent(newLogDto.getEventMessage());
         logs.setUserName(newLogDto.getUserName());
         return logs;
+    }
+
+    public ViewLogDto viewLog(Logs log) {
+        viewLogDto.setEventMessage(log.getEvent());
+        viewLogDto.setTimeStamp(log.getTimeStamp());
+        viewLogDto.setUserName(log.getUserName());
+        return viewLogDto;
     }
 
 }
