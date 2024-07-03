@@ -21,19 +21,14 @@ import lombok.RequiredArgsConstructor;
 public class LogsMapper {
 
     @Autowired
-    private Logs logs;
-
-    @Autowired
     private ViewLogDto viewLogDto;
-
-    @Autowired
-    private ServiceComponent serviceComponent;
 
     private final ServiceComponentRepository serviceComponentRepository;
 
     private final Logger logger = LoggerFactory.getLogger(ComponentServiceImpl.class);
 
     public Logs newLog(NewLogDto newLogDto) {
+        Logs logs = new Logs();
         Optional<ServiceComponent> logServiceComponent = serviceComponentRepository
                 .findById(newLogDto.getComponentId());
         if (!logServiceComponent.isPresent()) {

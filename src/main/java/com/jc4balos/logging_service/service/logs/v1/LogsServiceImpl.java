@@ -34,7 +34,8 @@ public class LogsServiceImpl implements LogsService {
         Logs newLog = logsMapper.newLog(newLogDto);
         logsRepository.save(newLog);
         String componentName = newLog.getServiceComponent().getComponentName();
-        String responseMessage = "Added log:" + " [" + componentName + "] " + newLog.getUserName() + newLog.getEvent();
+        String responseMessage = "Added log:" + " [" + componentName + "] " + newLog.getUserName() + " "
+                + newLog.getEvent();
         logger.info(responseMessage);
         return responseMessage;
     }

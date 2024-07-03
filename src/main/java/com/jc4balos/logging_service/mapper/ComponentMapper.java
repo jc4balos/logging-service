@@ -1,6 +1,5 @@
 package com.jc4balos.logging_service.mapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jc4balos.logging_service.dto.component.ModifyComponentDto;
@@ -13,10 +12,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ComponentMapper {
 
-    @Autowired
-    private ServiceComponent serviceComponent;
-
     public ServiceComponent newComponent(NewComponentDto newComponentDto) {
+        ServiceComponent serviceComponent = new ServiceComponent();
         serviceComponent.setComponentName(newComponentDto.getComponentName());
         serviceComponent.setActive(true);
         return serviceComponent;
