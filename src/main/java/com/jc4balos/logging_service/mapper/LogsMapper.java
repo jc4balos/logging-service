@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jc4balos.logging_service.dto.logs.NewLogDto;
@@ -19,9 +18,6 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class LogsMapper {
-
-    @Autowired
-    private ViewLogDto viewLogDto;
 
     private final ServiceComponentRepository serviceComponentRepository;
 
@@ -43,6 +39,7 @@ public class LogsMapper {
     }
 
     public ViewLogDto viewLog(Logs log) {
+        ViewLogDto viewLogDto = new ViewLogDto();
         viewLogDto.setEventMessage(log.getEvent());
         viewLogDto.setTimeStamp(log.getTimeStamp());
         viewLogDto.setUserName(log.getUserName());
