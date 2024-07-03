@@ -1,5 +1,7 @@
 package com.jc4balos.logging_service.service.logs.v1;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,11 +43,11 @@ public class LogsServiceImpl implements LogsService {
     }
 
     @Override
-    public Page<ViewLogDto> getAllLogs(Integer pageIndex, Integer recordsPerPage, Long componentId) {
-        Pageable pageAndSort = PageRequest.of(pageIndex, recordsPerPage, Sort.by("timeStamp").descending());
+    public List<ViewLogDto> getAllLogs(Integer pageIndex, Integer recordsPerPage, Long componentId) {
+        Pageable pageAndSort = PageRequest.of(pageIndex, recordsPerPage, Sort.by("time_stamp").descending());
         Page<Logs> allLogs = logsRepository.findByComponentId(componentId, pageAndSort);
         Page<ViewLogDto> viewLogsDto = allLogs.map(log -> logsMapper.viewLog(log));
-        return viewLogsDto;
+        return viewLogsDto.getContent();
     }
 
 }
